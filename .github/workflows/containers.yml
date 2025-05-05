@@ -1,0 +1,34 @@
+name: Build and deploy containers
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+      build-images:
+        runs-on: opensuse-leap-imgbuild
+        steps:
+          - name: 'Checkout GitHub Action'
+            uses: actions/checkout@main
+
+          - name: 'Login to GitHub Container Registry'
+            uses: redhat-actions/podman-login@v1
+            with:
+              registry: ghcr.io
+              username: ${{github.actor}}
+              password: ${{secrets.GITHUB_TOKEN}}
+
+          - name: 'Build images'
+            run: |
+              sudo kiwi-ng system build --description dev-leap \
+              --set-repo https://download.opensuse.org/distribution/leap/15.6/repo/oss \
+              --target-dir /tmp/dev-leap
+              _ver=`xmllint --xpath 'string(//version)' dev-leap/appliance.kiwi`
+              _tag=`xmllint --xpath 'string(//containerconfig/@tag)' dev-leap/appliance.kiwi`
+              _name=`xmllint --xpath 'string(//containerconfig/@name)' dev-leap/appliance.kiwi`
+              podman load -i /tmp/dev-leap/dev-leap.x86_64-${_ver}.docker.tar
+              podman push ${_name}:${_tag}
+              #docker build suse_leap_dev --tag ghcr.io/aard-fi/suse_leap_dev:latest
+              #docker push ghcr.io/aard-fi/suse_leap_dev:latest
