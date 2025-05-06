@@ -35,3 +35,5 @@ echo "Configure image: [$kiwi_iname]..."
 
 echo "export WAYLAND_DISPLAY=/tmp/wayland-0" >> /home/user/.bashrc
 echo "export MOZ_ENABLE_WAYLAND=1" >> /home/user/.bashrc
+echo "export XDG_RUNTIME_DIR=/home/user/.run" >> /home/user/.bashrc
+echo "mkdir -p /home/user/.run" >> /home/user/.bashrc

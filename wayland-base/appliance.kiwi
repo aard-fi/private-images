@@ -55,6 +55,14 @@
         <package name="squashfs"/>
         <package name="kernel-default"/>
         <package name="fipscheck"/>
+        <package name="adobe-sourcecodepro-fonts"/>
+        <package name="adobe-sourcehansans-tw-fonts"/>
+        <package name="adobe-sourcehanserif-tw-fonts"/>
+        <package name="adobe-sourcesans3-fonts"/>
+        <package name="adobe-sourcesanspro-fonts"/>
+        <package name="adobe-sourceserifpro-fonts"/>
+        <package name="bitstream-vera-fonts"/>
+        <package name="cantarell-fonts"/>
     </packages>
     <packages type="bootstrap">
         <package name="gawk"/>
