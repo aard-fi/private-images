@@ -7,6 +7,12 @@ inputs:
   target-directory:
     required: True
     default: /tmp
+  repository:
+    required: True
+    default: https://download.opensuse.org/distribution/leap/15.6/repo/oss
+  extra_repositories:
+    required: True
+    default: ""
 
 runs:
   using: "composite"
@@ -19,8 +25,7 @@ runs:
         _container_tag=`xmllint --xpath 'string(//containerconfig/@tag)' ${_kiwi_file}`
         _container_name=`xmllint --xpath 'string(//containerconfig/@name)' ${_kiwi_file}`
         sudo kiwi-ng system build --description ${_image_name} \
-          --set-repo https://download.opensuse.org/distribution/leap/15.6/repo/oss \
-          --add-repo https://download.opensuse.org/repositories/Virtualization:/containers/15.6 \
+          --set-repo ${repository} `for r in $extra_repos; do echo -n " --add-repo $r "; done` \
           --target-dir ${target_dir}/${_image_name}
         podman load -i ${target_dir}/${_image_name}/${_image_name}.x86_64-${_image_version}.docker.tar
         podman push ${_container_name}:${_container_tag}
@@ -29,3 +34,5 @@ runs:
       env:
         image_dir: ${{inputs.image-directory}}
         target_dir: ${{inputs.target-directory}}
+        repository: ${{inputs.repository}}
+        extra_repos: ${{inputs.extra_repositories}}
