@@ -28,6 +28,11 @@ jobs:
           - name: 'Build images'
             uses: ./kiwi-build
             with:
+              image-directory: leap-base
+              extra_repositories: https://download.opensuse.org/repositories/Virtualization:/containers/15.6
+          - name: 'Build images'
+            uses: ./kiwi-build
+            with:
               image-directory: wayland-base
               repository: https://download.opensuse.org/tumbleweed/repo/oss/
 #          - name: 'Build images'
