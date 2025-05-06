@@ -14,14 +14,14 @@
         <locale>en_US</locale>
         <keytable>us</keytable>
         <type image="docker">
-            <containerconfig name="ghcr.io/aard-fi/suse-dev-leap" tag="0.1" />
+            <containerconfig name="ghcr.io/aard-fi/suse-dev-leap" tag="0.1" user="user" workingdir="/home/user" />
         </type>
     </preferences>
     <users>
         <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
     </users>
     <users>
-        <user name="vagrant" password="vh4vw1N4alxKQ" home="/home/vagrant" groups="vagrant"/>
+        <user name="user" password="vh4vw1N4alxKQ" home="/home/user" groups="user"/>
     </users>
     <repository type="rpm-md">
         <source path="obsrepositories:/"/>
@@ -55,6 +55,29 @@
         <package name="squashfs"/>
         <package name="kernel-default"/>
         <package name="fipscheck"/>
+        <package name="obs-service-kiwi_label_helper"/>
+        <package name="obs-service-replace_using_package_version"/>
+        <package name="obs-service-kiwi_metainfo_helper"/>
+        <package name="build"/>
+        <package name="python3-kiwi"/>
+        <package name="skopeo"/>
+        <package name="umoci"/>
+        <package name="fakechroot"/>
+        <package name="fakeroot"/>
+        <package name="tar"/>
+        <package name="gzip"/>
+        <package name="bzip2"/>
+        <package name="unzip"/>
+        <package name="sudo"/>
+        <package name="git"/>
+        <package name="jq"/>
+        <package name="gh"/>
+        <package name="wget"/>
+        <package name="strace"/>
+        <package name="make"/>
+        <package name="cvs"/>
+        <package name="gcc"/>
+        <package name="gcc-c++"/>
     </packages>
     <packages type="bootstrap">
         <package name="gawk"/>
