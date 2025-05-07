@@ -7,7 +7,7 @@
         <specification>SUSE derived docker container</specification>
     </description>
     <preferences>
-        <type image="docker" derived_from="file://tumbleweed-base">
+        <type image="docker" derived_from="ghcr.io/aard-fi/suse-tumbleweed-base:latest">
             <containerconfig name="ghcr.io/aard-fi/suse-tumbleweed-base-derived" tag="0.2" additionalnames=":latest"/>
         </type>
         <version>2.1.0</version>
