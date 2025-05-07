@@ -6,11 +6,14 @@ inputs:
     required: True
   target-directory:
     required: True
-    default: /tmp
+    default: ""
   repository:
     required: True
     default: https://download.opensuse.org/distribution/leap/15.6/repo/oss
-  extra_repositories:
+  extra-repositories:
+    required: True
+    default: ""
+  source-image:
     required: True
     default: ""
 
@@ -18,15 +21,28 @@ runs:
   using: "composite"
   steps:
     - run: |
-        _kiwi_file=(${image_dir}/*.kiwi)
+        set -x
+
+        if [ -n "${source_image}" ]; then
+          if [ -d "${source_image}" ]; then
+            source_image="dir://`pwd`/${source_image}"
+          fi
+        fi
         # for now we just hope that for multiple kiwi files the first one is what we want
+        if [ -z "${_target_dir}" ]; then
+          _target_dir=`mktemp -d`
+        fi
+        cd ${image_dir}
+        _kiwi_file=(*.kiwi)
+        _image_specification=`xmllint --xpath 'string(//specification)' ${_kiwi_file}`
         _image_version=`xmllint --xpath 'string(//version)' ${_kiwi_file}`
         _image_name=`xmllint --xpath 'string(//image/@name)' ${_kiwi_file}`
         _container_tag=`xmllint --xpath 'string(//containerconfig/@tag)' ${_kiwi_file}`
         _container_name=`xmllint --xpath 'string(//containerconfig/@name)' ${_kiwi_file}`
-        sudo kiwi-ng system build --description ${_image_name} \
+        sudo kiwi-ng system build --description "${image_dir}" \
           --set-repo ${repository} `for r in $extra_repos; do echo -n " --add-repo $r "; done` \
-          --target-dir ${target_dir}/${_image_name}
+          --target-dir ${target_dir}/${_image_name} `if [ -n "$source_image" ]; then echo -n " --set-container-derived-from ${source_image} "; fi` \
+          --add-container-label="name=${_container_name}" --set-container-tag="${_container_tag}"
         podman load -i ${target_dir}/${_image_name}/${_image_name}.x86_64-${_image_version}.docker.tar
         podman push ${_container_name}:${_container_tag}
         podman push ${_container_name}:${_container_tag} ${_container_name}:latest
@@ -35,4 +51,5 @@ runs:
         image_dir: ${{inputs.image-directory}}
         target_dir: ${{inputs.target-directory}}
         repository: ${{inputs.repository}}
-        extra_repos: ${{inputs.extra_repositories}}
+        extra_repos: ${{inputs.extra-repositories}}
+        source_image: ${{inputs.source-image}}
