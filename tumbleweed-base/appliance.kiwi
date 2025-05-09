@@ -18,10 +18,10 @@
         </type>
     </preferences>
     <users>
-        <user password="$1$wYJUgpM5$RXMMeASDc035eX.NbYWFl0" home="/root" name="root" groups="root"/>
+        <user password="$6$42629$MEQBL4k206ITLamHTYRdXLmXPdYQyNRTpXqipXe6cRJOeeb1PUJBd0IeFA7tJfqlN.IDo3vez0/A6Rm3BcjI0/" home="/root" name="root" groups="root"/>
     </users>
     <users>
-        <user name="user" password="vh4vw1N4alxKQ" home="/home/user" groups="user"/>
+        <user name="user" password="$6$42629$MEQBL4k206ITLamHTYRdXLmXPdYQyNRTpXqipXe6cRJOeeb1PUJBd0IeFA7tJfqlN.IDo3vez0/A6Rm3BcjI0/" home="/home/user" groups="user"/>
     </users>
     <repository type="rpm-md">
         <source path="obsrepositories:/"/>

@@ -33,24 +33,34 @@ jobs:
                 https://mirror.aardsoft.fi/opensuse//update/leap/15.6/sle
                 https://download.opensuse.org/repositories/Virtualization:/containers/15.6
 
-#          - name: Build base image for tumbleweed
-#            uses: ./kiwi-build
-#            with:
-#              image-directory: tumbleweed-base
-#              repository: https://download.opensuse.org/tumbleweed/repo/oss/
+          - name: Build base image for tumbleweed
+            uses: aardsoft/ci-actions/kiwi-build@master
+            with:
+              image-directory: tumbleweed-base
+              repository: https://mirror.aardsoft.fi/opensuse///tumbleweed/repo/oss
+              extra-repositories: |
+                https://mirror.aardsoft.fi/opensuse/tumbleweed/repo/non-oss
 
-#          - name: Build dev-leap image
-#            uses: ./kiwi-build
-#            with:
-#              image-directory: dev-leap
-#              extra-repositories: https://download.opensuse.org/repositories/Virtualization:/containers/15.6
+          - name: Build dev-leap image
+            uses: aardsoft/ci-actions/kiwi-build@master
+            with:
+              image-directory: dev-leap
+              extra-repositories: |
+                https://mirror.aardsoft.fi/opensuse/distribution/leap/15.6/repo/non-oss
+                https://mirror.aardsoft.fi/opensuse/update/leap/15.6/non-oss
+                https://mirror.aardsoft.fi/opensuse/update/leap/15.6/oss
+                https://mirror.aardsoft.fi/opensuse/update/leap/15.6/backports
+                https://mirror.aardsoft.fi/opensuse//update/leap/15.6/sle
+                https://download.opensuse.org/repositories/Virtualization:/containers/15.6
 
+          - name: Build wayland base image
+            uses: aardsoft/ci-actions/kiwi-build@master
+            with:
+              image-directory: wayland-base
+              repository: https://mirror.aardsoft.fi/opensuse///tumbleweed/repo/oss
+              extra-repositories: |
+                https://mirror.aardsoft.fi/opensuse/tumbleweed/repo/non-oss
 
-#          - name: Build wayland base image
-#            uses: ./kiwi-build
-#            with:
-#              image-directory: wayland-base
-#              repository: https://download.opensuse.org/tumbleweed/repo/oss/
 #          - name: Build derived image
 #            uses: ./kiwi-build
 #            with:
