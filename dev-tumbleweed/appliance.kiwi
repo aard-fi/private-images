@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<image schemaversion="7.5" name="dev-tw">
+    <description type="system">
+        <author>Bernd Wachter</author>
+        <contact>bernd-container@wachter.fi</contact>
+        <specification>SUSE derived docker container</specification>
+    </description>
+    <preferences>
+        <type image="docker" derived_from="ghcr.io/aard-fi/suse-tumbleweed-base:latest">
+            <containerconfig name="ghcr.io/aard-fi/suse-tumbleweed-dev" tag="0.2" additionalnames=":latest"/>
+        </type>
+        <version>2.1.0</version>
+        <packagemanager>zypper</packagemanager>
+        <rpm-excludedocs>true</rpm-excludedocs>
+    </preferences>
+    <repository type="rpm-md">
+        <source path="obsrepositories:/"/>
+    </repository>
+    <packages type="image">
+        <package name="obs-service-kiwi_label_helper"/>
+        <package name="obs-service-replace_using_package_version"/>
+        <package name="obs-service-kiwi_metainfo_helper"/>
+        <package name="build"/>
+        <package name="python3-kiwi"/>
+        <package name="skopeo"/>
+        <package name="umoci"/>
+        <package name="fakechroot"/>
+        <package name="fakeroot"/>
+        <package name="tar"/>
+        <package name="gzip"/>
+        <package name="bzip2"/>
+        <package name="unzip"/>
+        <package name="sudo"/>
+        <package name="git"/>
+        <package name="jq"/>
+        <package name="gh"/>
+        <package name="wget"/>
+        <package name="strace"/>
+        <package name="make"/>
+        <package name="cvs"/>
+        <package name="gcc"/>
+        <package name="gcc-c++"/>
+        <package name="gcc-ada"/>
+        <package name="mingw64-cross-binutils"/>
+        <package name="mingw64-cross-cpp"/>
+        <package name="mingw64-cross-gcc"/>
+        <package name="mingw64-cross-gcc-c++"/>
+        <package name="mingw64-cross-pkgconf"/>
+        <package name="glibc-locale"/>
+        <package name="ca-certificates-mozilla"/>
+        <package name="autoconf"/>
+        <package name="automake"/>
+        <package name="cmake"/>
+        <package name="libpoppler-glib-devel"/>
+        <package name="libpng16-devel"/>
+        <package name="osc"/>
+        <package name="wine-devel"/>
+        <package name="systemd-devel"/>
+        <package name="libelf-devel"/>
+        <package name="kernel-firmware"/>
+        <package name="pkgconfig(xcb-errors)"/>
+    </packages>
+</image>
