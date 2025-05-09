@@ -6,6 +6,10 @@ on:
       - master
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   leap-base:
     runs-on: opensuse-leap-imgbuild
@@ -123,6 +127,7 @@ jobs:
         with:
           image-directory: dev-tumbleweed
           repository: https://mirror.aardsoft.fi/opensuse/tumbleweed/repo/oss
+          kiwi-extra-args: --debug
           extra-repositories: |
             https://mirror.aardsoft.fi/opensuse/tumbleweed/repo/non-oss
             http://download.opensuse.org/repositories/CrossToolchain:/avr/openSUSE_Tumbleweed/
