@@ -20,32 +20,39 @@ jobs:
               username: ${{github.actor}}
               password: ${{secrets.GITHUB_TOKEN}}
 
-#          - name: Build dev-leap image
-#            uses: ./kiwi-build
-#            with:
-#              image-directory: dev-leap
-#              extra-repositories: https://download.opensuse.org/repositories/Virtualization:/containers/15.6
-#          - name: Build base image for leap
-#            uses: ./kiwi-build
-#            with:
-#              image-directory: leap-base
-#              extra-repositories: https://download.opensuse.org/repositories/Virtualization:/containers/15.6
+
+          - name: Build base image for leap
+            uses: aardsoft/ci-actions/kiwi-build@master
+            with:
+              image-directory: leap-base
+              extra-repositories: |
+                https://mirror.aardsoft.fi/opensuse//update/leap/15.6/oss
+                https://download.opensuse.org/repositories/Virtualization:/containers/15.6
+
 #          - name: Build base image for tumbleweed
 #            uses: ./kiwi-build
 #            with:
 #              image-directory: tumbleweed-base
 #              repository: https://download.opensuse.org/tumbleweed/repo/oss/
+
+#          - name: Build dev-leap image
+#            uses: ./kiwi-build
+#            with:
+#              image-directory: dev-leap
+#              extra-repositories: https://download.opensuse.org/repositories/Virtualization:/containers/15.6
+
+
 #          - name: Build wayland base image
 #            uses: ./kiwi-build
 #            with:
 #              image-directory: wayland-base
 #              repository: https://download.opensuse.org/tumbleweed/repo/oss/
-          - name: Build derived image
-            uses: ./kiwi-build
-            with:
-              image-directory: test-image-docker-derived
-              repository: https://download.opensuse.org/tumbleweed/repo/oss/
-              source-image: tumbleweed-base
+#          - name: Build derived image
+#            uses: ./kiwi-build
+#            with:
+#              image-directory: test-image-docker-derived
+#              repository: https://download.opensuse.org/tumbleweed/repo/oss/
+#              source-image: tumbleweed-base
 #          - name: 'Build images'
 #            run: |
 #              sudo kiwi-ng system build --description dev-leap \
