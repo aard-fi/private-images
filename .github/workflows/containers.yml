@@ -26,7 +26,11 @@ jobs:
             with:
               image-directory: leap-base
               extra-repositories: |
-                https://mirror.aardsoft.fi/opensuse//update/leap/15.6/oss
+                https://mirror.aardsoft.fi/opensuse/distribution/leap/15.6/repo/non-oss
+                https://mirror.aardsoft.fi/opensuse/update/leap/15.6/non-oss
+                https://mirror.aardsoft.fi/opensuse/update/leap/15.6/oss
+                https://mirror.aardsoft.fi/opensuse/update/leap/15.6/backports
+                https://mirror.aardsoft.fi/opensuse//update/leap/15.6/sle
                 https://download.opensuse.org/repositories/Virtualization:/containers/15.6
 
 #          - name: Build base image for tumbleweed
