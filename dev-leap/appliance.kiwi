@@ -41,5 +41,11 @@
         <package name="cvs"/>
         <package name="gcc"/>
         <package name="gcc-c++"/>
+        <package name="gcc-ada"/>
+        <package name="mingw64-cross-binutils"/>
+        <package name="mingw64-cross-cpp"/>
+        <package name="mingw64-cross-gcc"/>
+        <package name="mingw64-cross-gcc-c++"/>
+        <package name="mingw64-cross-pkgconf"/>
     </packages>
 </image>
