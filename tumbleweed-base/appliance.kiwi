@@ -36,6 +36,7 @@
         <package name="acl"/>
         <package name="coreutils"/>
         <package name="cpio"/>
+        <package name="dbus-1-daemon"/>
         <package name="findutils"/>
         <package name="dracut"/>
         <package name="pigz"/>

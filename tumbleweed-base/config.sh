@@ -32,3 +32,5 @@ echo "Configure image: [$kiwi_iname]..."
 /usr/sbin/sshd-gen-keys-start
 
 (cd /usr/share/locale && find -name "*.mo" | xargs rm)
+
+touch /etc/machine-id && chown user: /etc/machine-id && chmod u+w /etc/machine-id
