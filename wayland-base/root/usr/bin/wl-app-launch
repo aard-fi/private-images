@@ -16,4 +16,22 @@ export WAYLAND_DISPLAY="wayland-0"
 
 export XDG_RUNTIME_DIR=/tmp
 
+if [ -z "${DBUS_UUID}" ]; then
+    DBUS_UUID=`dbus-uuidgen`
+fi
+
+if [ ! -s /etc/machine-id ]; then
+    echo ${DBUS_UUID} > /etc/machine-id
+fi
+
+# TODO: check if a dbus daemon is still running first, and add support for
+#       creating a dummy file for dbus proxied in from the host
+if [ ! -f /tmp/dbus-user-session ]; then
+    dbus-launch > /tmp/dbus-user-session
+fi
+
+if [ -f /tmp/dbus-user-session ]; then
+    . /tmp/dbus-user-session
+fi
+
 exec $@
