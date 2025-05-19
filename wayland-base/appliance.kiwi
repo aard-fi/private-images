@@ -8,7 +8,13 @@
     </description>
     <preferences>
         <type image="docker" derived_from="ghcr.io/aard-fi/suse-tumbleweed-base:latest">
-            <containerconfig name="ghcr.io/aard-fi/suse-wayland-base" tag="0.2" additionalnames=":latest"/>
+          <containerconfig name="ghcr.io/aard-fi/suse-wayland-base" tag="0.2" additionalnames=":latest">
+            <environment>
+              <env name="XDG_RUNTIME_DIR" value="/var/run/user/1000" />
+              <env name="DBUS_SESSION_BUS_ADDRESS" value="unix:path=/var/run/user/1000/bus" />
+              <env name="WAYLAND_DISPYLAY" value="wayland-0" />
+            </environment>
+          </containerconfig>
         </type>
         <version>2.1.0</version>
         <packagemanager>zypper</packagemanager>
@@ -26,7 +32,26 @@
         <package name="adobe-sourceserifpro-fonts"/>
         <package name="bitstream-vera-fonts"/>
         <package name="cantarell-fonts"/>
-        <package name="libpci3"/>
+        <package name="dejavu-fonts"/>
+        <package name="emojione-color-font"/>
+        <package name="free-ttf-fonts"/>
+        <package name="ghc-emojis"/>
+        <package name="google-noto-coloremoji-fonts"/>
+        <package name="google-roboto-fonts"/>
         <package name="imv"/>
+        <package name="libpci3"/>
+        <package name="libqt5-qtwayland"/>
+        <package name="qt6-wayland"/>
+        <package name="strace"/>
+        <package name="twemoji-color-font"/>
+        <package name="kde-oxygen-fonts"/>
+        <package name="google-noto-sans-fonts"/>
+        <package name="google-roboto-slab-fonts"/>
+        <package name="google-inconsolata-fonts"/>
+        <package name="google-opensans-fonts"/>
+        <package name="google-noto-coloremoji-fonts"/>
+        <package name="google-droid-fonts"/>
+        <package name="google-poppins-fonts"/>
+        <package name="google-roboto-fonts"/>
     </packages>
 </image>
