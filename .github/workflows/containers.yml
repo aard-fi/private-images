@@ -186,6 +186,16 @@ jobs:
             https://mirror.aardsoft.fi/opensuse/tumbleweed/repo/non-oss
             https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/
 
+      - name: Build google-chrome image
+        uses: aardsoft/ci-actions/kiwi-build@master
+        with:
+          image-directory: tw-wayland/google-chrome
+          repository: https://mirror.aardsoft.fi/opensuse/tumbleweed/repo/oss
+          extra-repositories: |
+            http://dl.google.com/linux/chrome/rpm/stable/x86_64
+            https://mirror.aardsoft.fi/opensuse/tumbleweed/repo/non-oss
+            https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/
+
 #          - name: Build derived image
 #            uses: ./kiwi-build
 #            with:
